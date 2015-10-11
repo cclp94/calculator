@@ -21,9 +21,9 @@ public class Calculator1 {
 	public static String extract(String sequence){
 		String stringPat;
 		if(vals.isEmpty() || (!ops.isEmpty()&&ops.peek().equals("(")))
-			stringPat = "^((-?(\\d(.\\d)?)+)|([=!]={1})|[!-+*^/()]|([<>]=?))";
+			stringPat = "^((-?(\\d([.]\\d)?)+)|([=!]={1})|[!-+*^/()]|([<>]=?))";
 		else
-			stringPat = "^(((\\d(.\\d)?)+)|([=!]={1})|[!-+*^/()]|([<>]=?))";
+			stringPat = "^(((\\d([.]\\d)?)+)|([=!]={1})|[!-+*^/()]|([<>]=?))";
 		Pattern pat = Pattern.compile(stringPat);
 		Matcher match = pat.matcher(sequence);
 		if(match.find()){
@@ -36,7 +36,6 @@ public class Calculator1 {
 	public static void calculateSequence(String operation){
 		String sequence = operation;
 		sequence = sequence.replaceAll(" ", "");
-		//System.out.println(sequence);
 		String current = null;
 		while(!sequence.isEmpty()){
 			current = extract(sequence);
